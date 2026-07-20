@@ -1,0 +1,10 @@
+export const faqs=[
+  {q:'What is a HippoScore?',a:'Every opportunity is scored from 0–100 based on how verified and ready-to-hire the homeowner is. Factors include direct homeowner contact, confirmed budget and timeline, supplied photos, ownership confirmation and how soon quotes are wanted. A higher score means a more complete, time-ready opportunity; it is not a guarantee of work.'},
+  {q:'How are leads verified?',a:'Every homeowner speaks with Lead Hippo directly and gives consent before their project and contact information are shared with up to three contractors.'},
+  {q:'How many contractors receive each lead?',a:'A maximum of three contractors can purchase each opportunity, first come, first served. When the remaining spots reach zero, the opportunity is sold out.'},
+  {q:'What do I receive when I buy?',a:'You receive a branded Opportunity Report by email within minutes. It includes the homeowner name, direct phone number, optional email, project scope, budget, timeline, city or region and supplied photos. Lead Hippo does not collect or provide a street address.'},
+  {q:"What if I cannot reach the homeowner?",a:'Report the issue within seven days of purchase and keep a record of reasonable contact attempts. If the homeowner cannot be reached within five business days, the claim may qualify for a replacement opportunity or refund under the Refund Policy.'},
+  {q:'Are you HomeAdvisor or Angi?',a:'No. Lead Hippo speaks to every homeowner, sells an opportunity to no more than three contractors, and has no mandatory subscription. You pay only for the opportunities you choose.'},
+  {q:'Does buying a lead guarantee the project?',a:'No. You are purchasing access to verified contact and project information, not a contract, appointment or guaranteed result. The homeowner decides who to contact and hire.'},
+  {q:'Can I buy the same opportunity more than once?',a:'No. V1 allows one purchase per company for each opportunity so the maximum-three-contractor promise remains meaningful.'}
+];

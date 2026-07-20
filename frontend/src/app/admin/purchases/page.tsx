@@ -1,0 +1,1 @@
+import {AdminShell} from '@/components/admin/AdminShell';import {PurchasesView} from '@/components/admin/PurchasesView';export default function Purchases(){return <AdminShell><PurchasesView/></AdminShell>}

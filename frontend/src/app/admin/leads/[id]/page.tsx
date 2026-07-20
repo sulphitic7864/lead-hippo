@@ -1,0 +1,1 @@
+import {AdminShell} from '@/components/admin/AdminShell';import {LeadForm} from '@/components/admin/LeadForm';export default async function EditLead({params}:{params:Promise<{id:string}>}){const {id}=await params;return <AdminShell><LeadForm leadId={Number(id)}/></AdminShell>}

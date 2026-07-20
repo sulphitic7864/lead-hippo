@@ -1,0 +1,1 @@
+import {AdminShell} from '@/components/admin/AdminShell';import {ContactsView} from '@/components/admin/ContactsView';export default function Contacts(){return <AdminShell><ContactsView/></AdminShell>}

@@ -1,0 +1,1 @@
+import {AdminShell} from '@/components/admin/AdminShell';import {DashboardView} from '@/components/admin/DashboardView';export default function Admin(){return <AdminShell><DashboardView/></AdminShell>}
