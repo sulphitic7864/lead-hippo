@@ -1,4 +1,36 @@
-import type {Metadata} from 'next';import {LeadGrid} from '@/components/LeadGrid';import {getLeads} from '@/lib/api';
-export const metadata:Metadata={title:'Opportunities',description:'Browse active and recently sold-out verified homeowner renovation opportunities.'};export const dynamic='force-dynamic';
-export const revalidate=20;
-export default async function Opportunities(){const leads=await getLeads();return <><section className="page-hero"><div className="wrap"><span>VERIFIED HOMEOWNER PROJECTS</span><h1>Opportunities</h1><p>Choose the projects that fit your team. Every homeowner has spoken with us and approved contact from up to three contractors.</p></div></section><section className="section opportunities-page"><div className="wrap"><div className="opportunity-summary"><strong>{leads.filter(l=>l.status==='ACTIVE').length}</strong> opportunities currently available <span>Newest first</span></div><LeadGrid leads={leads}/></div></section></>}
+import type { Metadata } from "next";
+import { LeadGrid } from "@/components/LeadGrid";
+import { getLeads } from "@/lib/api";
+export const metadata: Metadata = {
+  title: "Opportunities",
+  description:
+    "Browse active and recently sold-out verified homeowner renovation opportunities.",
+};
+export const dynamic = "force-dynamic";
+export const revalidate = 20;
+export default async function Opportunities() {
+  const leads = await getLeads();
+  return (
+    <>
+      <section className="page-hero">
+        <div className="wrap">
+          <span>VERIFIED HOMEOWNER PROJECTS</span>
+          <h1>Opportunities</h1>
+          <p>
+            Choose the projects that fit your team. Every homeowner has spoken
+            with us and approved contact from up to three contractors.
+          </p>
+        </div>
+      </section>
+      <section className="section opportunities-page">
+        <div className="wrap">
+          <div className="opportunity-summary">
+            <strong>{leads.filter((l) => l.status === "ACTIVE").length}</strong>{" "}
+            opportunities currently available <span>Newest first</span>
+          </div>
+          <LeadGrid leads={leads} />
+        </div>
+      </section>
+    </>
+  );
+}

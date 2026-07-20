@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 dist
+.next
+.env
 dist-ssr
 *.local
 
@@ -18,6 +20,8 @@ dist-ssr
 .idea
 .DS_Store
 *.suo
+*.next
+*.env
 *.ntvs*
 *.njsproj
 *.sln
