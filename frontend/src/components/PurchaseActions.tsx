@@ -12,7 +12,7 @@ export function PurchaseActions({ lead }: { lead: PublicLead }) {
   return (
     <div className="purchase-actions">
       <button
-        className="button"
+        className="oppertunity-btn"
         disabled={sold}
         onClick={() => {
           add();

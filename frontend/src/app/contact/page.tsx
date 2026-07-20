@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 export const metadata: Metadata = { title: "Contact Us" };
+import { AnimatedReveal } from "@/components/AnimatedReveal";
 export default function Contact() {
   const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "leads@leadhippo.ca";
   return (
     <>
-      <section className="page-hero">
+      <AnimatedReveal>
+      {/* <section className="page-hero">
         <div className="wrap">
           <span>WE ARE HERE TO HELP</span>
           <h1>Contact Us</h1>
@@ -14,7 +16,19 @@ export default function Contact() {
             us the details.
           </p>
         </div>
-      </section>
+      </section> */}
+      <section className="page-hero contact-hero">
+  <div className="wrap">
+    <span>WE ARE HERE TO HELP</span>
+    <h1>Contact Us</h1>
+    <p>
+      Questions about an opportunity, purchase or homeowner consent? Send
+      us the details.
+    </p>
+  </div>
+</section>
+        </AnimatedReveal>
+          <AnimatedReveal>
       <section className="section">
         <div className="wrap contact-grid">
           <div>
@@ -44,6 +58,7 @@ export default function Contact() {
           <ContactForm />
         </div>
       </section>
+      </AnimatedReveal>
     </>
   );
 }

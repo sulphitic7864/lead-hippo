@@ -88,19 +88,19 @@ export function Footer() {
           <h3>Marketplace</h3>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/opportunities">Opportunities</Link>
+            <Link href="/opportunities" style={{ textDecoration: "none" }}>Opportunities</Link>
           </motion.div>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/#how-it-works">How It Works</Link>
+            <Link href="/#how-it-works" style={{ textDecoration: "none" }}>How It Works</Link>
           </motion.div>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/faq">FAQ</Link>
+            <Link href="/faq" style={{ textDecoration: "none" }}>FAQ</Link>
           </motion.div>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/cart">Cart</Link>
+            <Link href="/cart" style={{ textDecoration: "none" }}>Cart</Link>
           </motion.div>
         </motion.div>
 
@@ -108,11 +108,11 @@ export function Footer() {
           <h3>Support</h3>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/contact">Contact Us</Link>
+            <Link href="/contact" style={{ textDecoration: "none" }}>Contact Us</Link>
           </motion.div>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/refund-claim">Submit a Claim</Link>
+            <Link href="/refund-claim" style={{ textDecoration: "none" }}>Submit a Claim</Link>
           </motion.div>
 
           <motion.div whileHover={{ x: 5 }}>
@@ -120,6 +120,7 @@ export function Footer() {
               href={`mailto:${
                 process.env.NEXT_PUBLIC_CONTACT_EMAIL || "leads@leadhippo.ca"
               }`}
+              style={{ textDecoration: "none" }}
             >
               {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "leads@leadhippo.ca"}
             </a>
@@ -130,19 +131,19 @@ export function Footer() {
           <h3>Legal</h3>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/terms">Terms of Service</Link>
+            <Link href="/terms" style={{ textDecoration: "none" }}>Terms of Service</Link>
           </motion.div>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/privacy" style={{ textDecoration: "none" }}>Privacy Policy</Link>
           </motion.div>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/refunds">Refund Policy</Link>
+            <Link href="/refunds" style={{ textDecoration: "none" }}>Refund Policy</Link>
           </motion.div>
 
           <motion.div whileHover={{ x: 5 }}>
-            <Link href="/disclaimers">Legal Disclaimers</Link>
+            <Link href="/disclaimers" style={{ textDecoration: "none" }}>Legal Disclaimers</Link>
           </motion.div>
         </motion.div>
       </motion.div>
