@@ -6,6 +6,7 @@ import { apiFetch, formatDate, formatMoney } from "@/lib/api";
 import type { PublicLead } from "@/types";
 import { PurchaseActions } from "@/components/PurchaseActions";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
+import { OpportunityGallery } from "@/components/OpportunityGallery";
 
 async function load(code: string) {
   try {
@@ -46,46 +47,7 @@ export default async function OpportunityDetail({
               ← All opportunities
             </Link>
             <div className="detail-grid">
-              <div>
-                <div className="gallery-main">
-                  {/* {lead.photos[0] ? (
-                  <img src={lead.photos[0].url} alt={lead.title} />
-                ) : (
-                  <div className="image-placeholder">Project photo</div>
-                )} */}
-                  {lead.photos[0] ? (
-                    <img
-                      id="main-project-image"
-                      src={lead.photos[0].url}
-                      alt={lead.title}
-                    />
-                  ) : (
-                    <div className="image-placeholder">Project photo</div>
-                  )}
-                  <span className="score-badge large">
-                    <small>HIPPOSCORE</small>
-                    {lead.hippoScore}
-                  </span>
-                  {lead.isNew && !sold && (
-                    <span className="new-badge">NEW</span>
-                  )}
-                  {sold && <span className="sold-badge">SOLD OUT</span>}
-                </div>
-                {lead.photos.length > 1 && (
-                  <div className="gallery-thumbs">
-                    {lead.photos.slice(1).map((p) => (
-                      // <img key={p.id} src={p.url} alt={`${lead.title} detail`} />
-                      <img
-                        key={p.id}
-                        src={p.url}
-                        alt={`${lead.title} detail`}
-                        className="gallery-thumbnail"
-                        data-image-url={p.url}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
+              <OpportunityGallery lead={lead} sold={sold} />
 
               <aside className="purchase-panel">
                 <span className="trade-pill">{lead.trade.name}</span>

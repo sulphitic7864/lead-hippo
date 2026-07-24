@@ -22,7 +22,9 @@ export default async function Home() {
                 <h2>Featured Opportunities</h2>
               </div>
 
-              <Link href="/opportunities"  className="view-all-link" >View all opportunities →</Link>
+              <Link href="/opportunities" className="view-all-link">
+                View all opportunities →
+              </Link>
             </div>
 
             <LeadGrid leads={featured} />
@@ -59,11 +61,11 @@ export default async function Home() {
               Browse Opportunities
             </Link> */}
             <Link
-  className="button button-white inline-block transition-all !hover:bg-white duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03] active:scale-95"
-  href="/opportunities"
->
-  Browse Opportunities
-</Link> 
+              className="button button-white inline-block transition-all !hover:bg-white duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03] active:scale-95"
+              href="/opportunities"
+            >
+              Browse Opportunities
+            </Link>
           </div>
         </section>
       </AnimatedReveal>
