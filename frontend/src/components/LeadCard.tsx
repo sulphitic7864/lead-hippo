@@ -10,7 +10,11 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
   const sold = lead.status === "SOLD_OUT" || lead.spotsRemaining === 0;
   const photo = lead.photos.find((p) => p.isPrimary) || lead.photos[0];
 
-  function getListingAge(publishedAt: string) {
+  function getListingAge(publishedAt: string | null) {
+    if (!publishedAt) {
+      return 0;
+    }
+
     const publishedDate = new Date(publishedAt);
     const now = new Date();
 
