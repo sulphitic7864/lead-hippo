@@ -62,7 +62,6 @@ export function LeadsTable() {
               {leads.map((l) => (
                 <tr key={l.id}>
                   <td>
-                    {console.log("leads data", l)}
                     <strong>{l.title}</strong>
                     <small>
                       {l.leadCode} · {l.city}, {l.region}
