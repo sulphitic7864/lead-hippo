@@ -72,15 +72,28 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
 
           <span>
             <Image src="/assets/calendar.png" alt="" width={15} height={15} />
-            {lead.timeline}
+            Within {lead.timeline} Days
           </span>
         </div>
+        <div className="lead-checks">
+          <div>
+            <span>✓</span>
+            Homeowner Verified
+          </div>
 
+          <div>
+            <span>✓</span>
+            Budget Confirmed
+          </div>
+
+          <div>
+            <span>✓</span>
+            Photos Available
+          </div>
+        </div>
         <p>{lead.description}</p>
 
-        <div className="posted">
-          Posted {formatDate(lead.publishedAt)}
-        </div>
+        <div className="posted">Posted {formatDate(lead.publishedAt)}</div>
       </div>
 
       <div className="lead-footer">
@@ -97,15 +110,20 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
         <strong>{formatMoney(lead.priceCents)}</strong>
 
         {sold ? (
-          <button disabled className="oppertunity-btn">Sold Out</button>
+          <button disabled className="oppertunity-btn">
+            Sold Out
+          </button>
         ) : (
           <motion.div
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             transition={{ duration: 0.2 }}
-                   className="oppertunity-btn"
+            className="oppertunity-btn"
           >
-            <Link href={`/opportunities/${lead.leadCode}`} style={{ textDecoration: "none" }}>
+            <Link
+              href={`/opportunities/${lead.leadCode}`}
+              style={{ textDecoration: "none" }}
+            >
               View Details
             </Link>
           </motion.div>

@@ -14,9 +14,7 @@ async function testMail() {
   if (!env.ADMIN_EMAIL) missingVariables.push("ADMIN_EMAIL");
 
   if (missingVariables.length > 0) {
-    throw new Error(
-      `Missing SMTP variables: ${missingVariables.join(", ")}`,
-    );
+    throw new Error(`Missing SMTP variables: ${missingVariables.join(", ")}`);
   }
 
   const transporter = nodemailer.createTransport({

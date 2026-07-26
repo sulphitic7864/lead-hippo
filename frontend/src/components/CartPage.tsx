@@ -28,6 +28,7 @@ export function CartPage() {
           phone: form.get("phone"),
           marketingConsent: form.get("marketingConsent") === "on",
           acceptedTerms: form.get("acceptedTerms") === "on",
+          liabilityAccepted: form.get("liabilityAccepted") === "on",
         }),
       });
 
@@ -190,6 +191,16 @@ export function CartPage() {
 
             <span>
               Email me when new opportunities become available. Optional.
+            </span>
+          </label>
+
+          <label className="check-control">
+            <input name="liabilityAccepted" type="checkbox" required />
+
+            <span>
+              By checking this box, we agree that we are fully insured for
+              liability & have the relevant licences, certifications, and
+              knowledge to safely carry out the requirements of this job.
             </span>
           </label>
 

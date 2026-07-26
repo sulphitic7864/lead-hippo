@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FaCcVisa, FaCcMastercard, FaCcStripe } from "react-icons/fa";
 
 const containerVariants = {
   hidden: {},
@@ -38,19 +39,15 @@ export function Footer() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
       >
+        {/* BRAND */}
         <motion.div variants={itemVariants}>
-          <motion.div
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Image
-              src="/assets/logo.png"
-              alt="Lead Hippo"
-              width={190}
-              height={86}
-              className="footer-logo"
-            />
-          </motion.div>
+          <Image
+            src="/assets/logo.png"
+            alt="Lead Hippo"
+            width={190}
+            height={86}
+            className="footer-logo"
+          />
 
           <p>
             Verified homeowner renovation opportunities for Canadian
@@ -58,106 +55,109 @@ export function Footer() {
           </p>
 
           <div className="footer-badges">
-            <motion.div
-              whileHover={{ y: -4, scale: 1.06 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Image
-                src="/assets/badge-canadian.png"
-                alt="Canadian marketplace"
-                width={50}
-                height={50}
-              />
-            </motion.div>
+            <Image
+              src="/assets/badge-shield.png"
+              alt=""
+              width={45}
+              height={45}
+            />
 
-            <motion.div
-              whileHover={{ y: -4, scale: 1.06 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Image
-                src="/assets/badge-shield.png"
-                alt="Secure marketplace"
-                width={50}
-                height={50}
-              />
-            </motion.div>
+            <Image src="/assets/icon-lock.png" alt="" width={45} height={45} />
+
+            <Image
+              src="/assets/icon-verified.png"
+              alt=""
+              width={45}
+              height={45}
+            />
           </div>
         </motion.div>
 
+        {/* QUICK LINKS */}
+
         <motion.div variants={itemVariants}>
-          <h3>Marketplace</h3>
+          <h3>QUICK LINKS</h3>
 
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/opportunities" style={{ textDecoration: "none" }}>Opportunities</Link>
-          </motion.div>
+          <Link href="/opportunities">Opportunities</Link>
 
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/#how-it-works" style={{ textDecoration: "none" }}>How It Works</Link>
-          </motion.div>
+          <Link href="/how-it-works">How It Works</Link>
 
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/faq" style={{ textDecoration: "none" }}>FAQ</Link>
-          </motion.div>
+          <Link href="/faq">FAQ</Link>
 
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/cart" style={{ textDecoration: "none" }}>Cart</Link>
-          </motion.div>
+          <Link href="/contact">Contact</Link>
         </motion.div>
 
+        {/* LEGAL */}
+
         <motion.div variants={itemVariants}>
-          <h3>Support</h3>
+          <h3>LEGAL</h3>
 
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/contact" style={{ textDecoration: "none" }}>Contact Us</Link>
-          </motion.div>
+          <Link href="/terms">Terms of Service</Link>
 
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/refund-claim" style={{ textDecoration: "none" }}>Submit a Claim</Link>
-          </motion.div>
+          <Link href="/privacy">Privacy Policy</Link>
 
-          <motion.div whileHover={{ x: 5 }}>
+          <Link href="/refunds">Refund Policy</Link>
+        </motion.div>
+
+        {/* PAYMENTS */}
+
+        <motion.div variants={itemVariants} className="secure-payment">
+          <h3>SECURE PAYMENTS</h3>
+
+          <div className="payment-icons">
             <a
-              href={`mailto:${
-                process.env.NEXT_PUBLIC_CONTACT_EMAIL || "leads@leadhippo.ca"
-              }`}
-              style={{ textDecoration: "none" }}
+              href="https://stripe.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="payment-box stripe"
+              aria-label="Stripe Payments"
             >
-              {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "leads@leadhippo.ca"}
+              <FaCcStripe size={45} />
             </a>
-          </motion.div>
-        </motion.div>
 
-        <motion.div variants={itemVariants}>
-          <h3>Legal</h3>
+            <a
+              href="https://www.visa.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="payment-box"
+              aria-label="Visa Payments"
+            >
+              <FaCcVisa size={45} />
+            </a>
 
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/terms" style={{ textDecoration: "none" }}>Terms of Service</Link>
-          </motion.div>
+            <a
+              href="https://www.mastercard.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="payment-box"
+              aria-label="Mastercard Payments"
+            >
+              <FaCcMastercard size={45} />
+            </a>
+          </div>
 
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/privacy" style={{ textDecoration: "none" }}>Privacy Policy</Link>
-          </motion.div>
-
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/refunds" style={{ textDecoration: "none" }}>Refund Policy</Link>
-          </motion.div>
-
-          <motion.div whileHover={{ x: 5 }}>
-            <Link href="/disclaimers" style={{ textDecoration: "none" }}>Legal Disclaimers</Link>
-          </motion.div>
+          <p>Official Stripe & card marks</p>
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className="wrap footer-bottom"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.25 }}
-      >
+      <motion.div className="wrap footer-bottom">
         <span>
           © {new Date().getFullYear()} Lead Hippo. All rights reserved.
         </span>
+
+        <div className="canadian">
+          <Image
+            src="/assets/badge-canadian.png"
+            alt="Canada"
+            width={45}
+            height={45}
+          />
+
+          <div>
+            <strong>Proudly Canadian</strong>
+            <span>Supporting local businesses</span>
+          </div>
+        </div>
       </motion.div>
     </footer>
   );

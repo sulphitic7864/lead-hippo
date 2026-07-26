@@ -21,6 +21,7 @@ interface CheckoutInput {
   phone: string;
   marketingConsent: boolean;
   acceptedTerms: true;
+  liabilityAccepted: true;
 }
 interface LeadRow extends RowDataPacket {
   id: number;
@@ -154,7 +155,7 @@ export async function createCheckout(input: CheckoutInput) {
     }
     const subtotal = rows.reduce((sum, l) => sum + l.price_cents, 0);
     await connection.execute(
-      `INSERT INTO checkout_sessions(id,buyer_company,buyer_email,buyer_email_normalized,buyer_phone,buyer_phone_normalized,subtotal_cents,currency,status,marketing_consent,expires_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)`,
+      `INSERT INTO checkout_sessions(id,buyer_company,buyer_email,buyer_email_normalized,buyer_phone,buyer_phone_normalized,subtotal_cents,currency,status,marketing_consent,liability_accepted,expires_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
       [
         checkoutId,
         input.companyName,
@@ -166,6 +167,7 @@ export async function createCheckout(input: CheckoutInput) {
         "CAD",
         "CREATING",
         input.marketingConsent,
+        input.liabilityAccepted,
         mysqlDate(expiresAt),
       ],
     );
