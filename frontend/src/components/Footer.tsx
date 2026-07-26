@@ -42,7 +42,7 @@ export function Footer() {
         {/* BRAND */}
         <motion.div variants={itemVariants}>
           <Image
-            src="/assets/logo.png"
+            src="/assets/logo_new.png"
             alt="Lead Hippo"
             width={190}
             height={86}
