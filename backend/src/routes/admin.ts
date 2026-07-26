@@ -74,14 +74,9 @@ adminRouter.post(
   photoUpload.array("photos", 5),
   asyncHandler(async (req, res) => {
     const input = leadSchema.parse(parsePayload(req.body.payload));
-    res
-      .status(201)
-      .json({
-        data: await createLead(
-          input,
-          (req.files as Express.Multer.File[]) || [],
-        ),
-      });
+    res.status(201).json({
+      data: await createLead(input, (req.files as Express.Multer.File[]) || []),
+    });
   }),
 );
 adminRouter.patch(
@@ -275,11 +270,26 @@ adminRouter.post(
     const input = z
       .object({ name: z.string().min(2).max(100) })
       .parse(req.body);
-    await pool.execute("INSERT INTO trade_types(name,slug) VALUES(?,?)", [
-      input.name,
-      slugify(input.name),
-    ]);
-    res.status(201).json({ data: { ok: true } });
+
+    const slug = slugify(input.name);
+
+    try {
+      await pool.execute("INSERT INTO trade_types(name,slug) VALUES(?,?)", [
+        input.name,
+        slug,
+      ]);
+
+      res.status(201).json({ data: { ok: true } });
+    } catch (error: any) {
+      if (error.code === "ER_DUP_ENTRY") {
+        return res.status(409).json({
+          code: "DUPLICATE_TRADE",
+          message: "Trade already exists.",
+        });
+      }
+
+      throw error;
+    }
   }),
 );
 adminRouter.patch(

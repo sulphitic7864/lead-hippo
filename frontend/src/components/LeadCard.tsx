@@ -10,6 +10,18 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
   const sold = lead.status === "SOLD_OUT" || lead.spotsRemaining === 0;
   const photo = lead.photos.find((p) => p.isPrimary) || lead.photos[0];
 
+  function getListingAge(publishedAt: string) {
+    const publishedDate = new Date(publishedAt);
+    const now = new Date();
+
+    const hours = Math.floor(
+      (now.getTime() - publishedDate.getTime()) / (1000 * 60 * 60),
+    );
+
+    return hours;
+  }
+  const hoursAgo = getListingAge(lead.publishedAt);
+
   return (
     <motion.article
       className={sold ? "lead-card sold" : "lead-card"}
@@ -43,7 +55,16 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
           {lead.hippoScore}
         </motion.span>
 
-        {lead.isNew && !sold && (
+        {lead.trade && !sold && (
+          <motion.span
+            className="new-badge"
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
+            {lead.trade?.name ?? "Other"}
+          </motion.span>
+        )}
+        {/* {lead.isNew && !sold && (
           <motion.span
             className="new-badge"
             initial={{ opacity: 0, scale: 0.7 }}
@@ -51,8 +72,7 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
           >
             NEW
           </motion.span>
-        )}
-
+        )} */}
         {sold && <span className="sold-badge">SOLD OUT</span>}
       </div>
 
@@ -76,10 +96,12 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
           </span>
         </div>
         <div className="lead-checks">
-          <div>
-            <span>✓</span>
-            Homeowner Verified
-          </div>
+          {hoursAgo <= 48 && (
+            <div>
+              <span>✓</span>
+              Contacted within ({hoursAgo} hours ago)
+            </div>
+          )}
 
           <div>
             <span>✓</span>
