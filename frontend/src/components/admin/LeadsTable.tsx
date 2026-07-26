@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import type { AdminLead } from "@/types";
 import { apiFetch, formatMoney, formatDate } from "@/lib/api";
+import { FaStar } from "react-icons/fa";
+
 export function LeadsTable() {
   const [leads, setLeads] = useState<AdminLead[]>([]),
     [message, setMessage] = useState("");
@@ -32,8 +34,8 @@ export function LeadsTable() {
     <>
       <div className="admin-page-title">
         <div>
-          <span>INVENTORY</span>
-          <h1>Lead Management</h1>
+          {/* <span>INVENTORY</span> */}
+          <h2>Leads</h2>
         </div>
         <Link className="button" href="/admin/leads/new">
           + Add Lead
@@ -47,9 +49,11 @@ export function LeadsTable() {
               <tr>
                 <th>Lead</th>
                 <th>Status</th>
-                <th>Price</th>
                 <th>Spots</th>
+                <th>Score</th>
+                <th>Price</th>
                 <th>Published</th>
+                <th>Featured</th>
                 <th>Views</th>
                 <th>Actions</th>
               </tr>
@@ -58,6 +62,7 @@ export function LeadsTable() {
               {leads.map((l) => (
                 <tr key={l.id}>
                   <td>
+                    {console.log("leads data", l)}
                     <strong>{l.title}</strong>
                     <small>
                       {l.leadCode} · {l.city}, {l.region}
@@ -66,41 +71,55 @@ export function LeadsTable() {
                   <td>
                     <span className={`status status-${l.status.toLowerCase()}`}>
                       {l.status}
+                      {l.isNew && <small> . New</small>}
                     </span>
-                    {l.isFeatured && <small>Featured</small>}
                   </td>
-                  <td>{formatMoney(l.priceCents)}</td>
                   <td>
-                    <select
-                      value={l.spotsRemaining}
-                      onChange={(e) =>
-                        action(l.id, "spots", { spots: Number(e.target.value) })
-                      }
-                    >
-                      {[0, 1, 2, 3].map((n) => (
-                        <option key={n}>{n}</option>
-                      ))}
-                    </select>{" "}
-                    / {l.spotsTotal}
+                    <span className="">
+                      {l.spotsRemaining}/{l.spotsTotal}
+                    </span>
                   </td>
-                  <td>{formatDate(l.publishedAt)}</td>
+                  <td>{l?.hippoScore}</td>
+                  <td>{formatMoney(l?.priceCents)}</td>
+                  <td>{formatDate(l?.publishedAt)}</td>
+                  <td>
+                    <FaStar
+                      className={
+                        l.isFeatured ? "featured-star active" : "featured-star"
+                      }
+                    />
+                  </td>
                   <td>{l.viewCount}</td>
                   <td>
                     <div className="table-actions">
-                      <Link href={`/admin/leads/${l.id}`}>Edit</Link>
+                      <Link
+                        className="action-pill edit-pill"
+                        href={`/admin/leads/${l.id}`}
+                      >
+                        Edit
+                      </Link>
+
                       {l.status === "DRAFT" && (
-                        <button onClick={() => action(l.id, "publish")}>
+                        <button
+                          className="action-pill publish-pill"
+                          onClick={() => action(l.id, "publish")}
+                        >
                           Publish
                         </button>
                       )}
+
                       {l.status === "ACTIVE" && (
-                        <button onClick={() => action(l.id, "sold-out")}>
+                        <button
+                          className="action-pill sold-pill"
+                          onClick={() => action(l.id, "sold-out")}
+                        >
                           Sold Out
                         </button>
                       )}
+
                       {l.status !== "ARCHIVED" && (
                         <button
-                          className="danger-link"
+                          className="action-pill archive-pill"
                           onClick={() => action(l.id, "archive")}
                         >
                           Archive

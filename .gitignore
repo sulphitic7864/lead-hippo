@@ -72,3 +72,15 @@ Thumbs.db
 *.local
 *.swp
 *.swo
+# ==========================
+# Docker
+# ==========================
+Dockerfile
+**/Dockerfile
+
+docker-compose.yml
+docker-compose.yaml
+**/docker-compose.yml
+**/docker-compose.yaml
+
+.dockerignore
