@@ -78,7 +78,9 @@ export function LeadsTable() {
                       {l.spotsRemaining}/{l.spotsTotal}
                     </span>
                   </td>
-                  <td>{l?.hippoScore}</td>
+                  <td>
+                    <span className="scorepill">{l?.hippoScore}</span>
+                  </td>
                   <td>{formatMoney(l?.priceCents)}</td>
                   <td>{formatDate(l?.publishedAt)}</td>
                   <td>
