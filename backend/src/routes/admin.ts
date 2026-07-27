@@ -341,7 +341,7 @@ adminRouter.get(
 // PASSWORD FIRST
 adminRouter.patch(
   "/settings/password",
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req: any, res: any) => {
 
     const input = z
       .object({
