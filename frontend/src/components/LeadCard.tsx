@@ -81,7 +81,15 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
       </div>
 
       <div className="lead-body">
-        <h3>{lead.title}</h3>
+        <div className="title-div">
+          <h3>{lead.title}</h3>
+          {lead.isFeatured && (
+            <strong className="featured-badge">
+              <span className="featured-star-icon">★</span>
+              Featured
+            </strong>
+          )}
+        </div>
 
         <div className="lead-location">
           <Image src="/assets/location.png" alt="" width={16} height={16} />

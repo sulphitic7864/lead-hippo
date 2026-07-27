@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LeadGrid } from "@/components/LeadGrid";
+import { OpportunityFilter } from "@/components/OpportunityFilter";
 import { getLeads } from "@/lib/api";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
 export const metadata: Metadata = {
@@ -29,13 +29,7 @@ export default async function Opportunities() {
       <AnimatedReveal>
         <section className="section opportunities-page">
           <div className="wrap">
-            <div className="opportunity-summary">
-              <strong>
-                {leads.filter((l) => l.status === "ACTIVE").length}
-              </strong>{" "}
-              opportunities currently available <span>Newest first</span>
-            </div>
-            <LeadGrid leads={leads} />
+            <OpportunityFilter leads={leads} />
           </div>
         </section>
       </AnimatedReveal>

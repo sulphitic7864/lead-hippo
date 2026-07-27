@@ -307,6 +307,11 @@ select {
   line-height: 1.55;
   margin: 26px 0 34px;
 }
+@media (min-width: 1400px) {
+  .hero p {
+    max-width: 1000px;
+  }
+}
 .hero-actions {
   display: flex;
   gap: 12px;
@@ -389,7 +394,78 @@ select {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
 }
+.title-div {
+  display: flex;
+  justify-content: space-between;
+}
+.title-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
 
+.featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 7px 16px;
+  border-radius: 999px;
+
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+
+  box-shadow:
+    0 6px 18px rgba(37, 99, 235, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  position: relative;
+  overflow: hidden;
+  animation: featuredPulse 2.5s ease-in-out infinite;
+}
+
+.featured-badge::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -40%;
+  width: 40%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(25deg);
+  animation: featuredShine 3s infinite;
+}
+
+.featured-star-icon {
+  font-size: 16px;
+  line-height: 1;
+  color: #ffffff;
+
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
+}
+
+@keyframes featuredPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+@keyframes featuredShine {
+  0% {
+    left: -40%;
+  }
+
+  40%,
+  100% {
+    left: 140%;
+  }
+}
 .lead-checks {
   margin: 18px 0;
   display: flex;
@@ -787,6 +863,7 @@ select {
 .opportunity-summary {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 7px;
   margin-bottom: 26px;
   color: #52627a;
@@ -798,6 +875,15 @@ select {
 .opportunity-summary > span {
   margin-left: auto;
   font-size: 13px;
+}
+.opportunity-summary input {
+    width: 40%;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    padding: 10px 12px;
+    background: #fff;
+    color: var(--ink);
+    outline: 0;
 }
 .detail-top {
   padding: 45px 0 64px;
@@ -1997,7 +2083,7 @@ textarea {
     width: min(100% - 28px, 1180px);
   }
   .section {
-    padding: 60px 0;
+    padding: 15px 0;
   }
   .site-header {
     height: 74px;
@@ -2174,6 +2260,7 @@ textarea {
   }
   .footer-bottom {
     display: block;
+    justify-items: center;
   }
   .footer-bottom span {
     display: block;

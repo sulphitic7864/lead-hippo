@@ -11,26 +11,35 @@ export function TradesView() {
   useEffect(() => {
     load();
   }, []);
+
   async function add(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const f = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const f = new FormData(form);
 
     try {
-      await apiFetch("/admin/trades", {
+        await apiFetch("/admin/trades", {
         method: "POST",
         body: JSON.stringify({
           name: f.get("name"),
         }),
       });
-
-      e.currentTarget.reset();
+      form.reset();
       setMessageType("success");
       setMessage("Trade added successfully.");
       await load();
     } catch (error: any) {
       setMessageType("error");
-      setMessage(error?.message == "Request failed (409)" ? "Trade already exists." : error?.message);
+
+      if (
+        error?.message === "Request failed (409)" ||
+        error?.message?.includes("DUPLICATE_TRADE")
+      ) {
+        setMessage("Trade already exists.");
+      } else {
+        setMessage(error?.message || "Unable to add trade.");
+      }
     }
   }
   async function update(id: number, data: any) {
