@@ -8,7 +8,12 @@ import { AnimatedReveal } from "@/components/AnimatedReveal";
 export const dynamic = "force-dynamic";
 export const revalidate = 30;
 export default async function Home() {
-  const featured = await getLeads();
+  const leads = await getLeads();
+
+  const featured = leads.filter(
+    (lead) => lead.isFeatured === true
+  );
+
   return (
     <>
       <Hero />
