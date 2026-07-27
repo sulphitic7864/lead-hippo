@@ -46,7 +46,7 @@ export function OpportunityFilter({ leads }: { leads: any[] }) {
 
         <input
           type="search"
-          placeholder="Search opportunities..."
+          placeholder="Search by trade..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
