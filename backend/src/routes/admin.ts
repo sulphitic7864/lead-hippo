@@ -22,6 +22,8 @@ import { enqueueJob } from "../services/job.service.js";
 import { approveStripeRefund } from "../services/refund.service.js";
 import { getStripe } from "../services/stripe.service.js";
 import { slugify } from "../utils/normalize.js";
+import { hashPassword, verifyPassword } from "../utils/crypto.js";
+import { HttpError } from "../utils/errors.js";
 
 export const adminRouter = Router();
 adminRouter.use(requireAdmin);
@@ -334,6 +336,64 @@ adminRouter.get(
       "SELECT * FROM settings ORDER BY setting_key",
     );
     res.json({ data: rows });
+  }),
+);
+// PASSWORD FIRST
+adminRouter.patch(
+  "/settings/password",
+  asyncHandler(async (req, res) => {
+
+    const input = z
+      .object({
+        currentPassword: z.string().min(1),
+        newPassword: z.string().min(12),
+      })
+      .parse(req.body);
+
+    const adminId = req.admin.id;
+
+    const [rows] = await pool.execute<any[]>(
+      `
+      SELECT 
+        id,
+        password_salt,
+        password_hash
+      FROM admin_users
+      WHERE id=?
+      `,
+      [adminId],
+    );
+
+    if (!rows.length) {
+      throw new HttpError(404, "Admin account not found");
+    }
+    const admin = rows[0];
+    const valid = verifyPassword(
+      input.currentPassword,
+      admin.password_salt,
+      admin.password_hash,
+    );
+
+    if (!valid) {
+      throw new HttpError(400, "Current password is incorrect");
+    }
+
+    const { salt, hash } = hashPassword(input.newPassword);
+    await pool.execute(
+      `
+      UPDATE admin_users
+      SET password_salt=?,
+          password_hash=?
+      WHERE id=?
+      `,
+      [salt, hash, admin.id],
+    );
+
+    res.json({
+      data: {
+        message: "Password updated successfully",
+      },
+    });
   }),
 );
 adminRouter.patch(
