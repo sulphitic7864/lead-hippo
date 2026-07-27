@@ -26,6 +26,80 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
   }
   const hoursAgo = getListingAge(lead.publishedAt);
 
+  function getTradeBadgeStyle(tradeName: string) {
+    const colors = [
+      {
+        bg: "rgba(96, 165, 250, 0.90)",
+        shadow: "rgba(96, 165, 250, 0.25)",
+      },
+      {
+        bg: "rgba(167, 139, 250, 0.90)",
+        shadow: "rgba(167, 139, 250, 0.25)",
+      },
+      {
+        bg: "rgba(52, 211, 153, 0.90)",
+        shadow: "rgba(52, 211, 153, 0.25)",
+      },
+      {
+        bg: "rgba(251, 191, 36, 0.90)",
+        shadow: "rgba(251, 191, 36, 0.25)",
+      },
+      {
+        bg: "rgba(244, 114, 182, 0.90)",
+        shadow: "rgba(244, 114, 182, 0.25)",
+      },
+      {
+        bg: "rgba(45, 212, 191, 0.90)",
+        shadow: "rgba(45, 212, 191, 0.25)",
+      },
+      {
+        bg: "rgba(129, 140, 248, 0.90)",
+        shadow: "rgba(129, 140, 248, 0.25)",
+      },
+      {
+        bg: "rgba(251, 146, 60, 0.90)",
+        shadow: "rgba(251, 146, 60, 0.25)",
+      },
+      {
+        bg: "rgba(74, 222, 128, 0.90)",
+        shadow: "rgba(74, 222, 128, 0.25)",
+      },
+      {
+        bg: "rgba(248, 113, 113, 0.90)",
+        shadow: "rgba(248, 113, 113, 0.25)",
+      },
+      {
+        bg: "rgba(14, 165, 233, 0.90)",
+        shadow: "rgba(14, 165, 233, 0.25)",
+      },
+      {
+        bg: "rgba(192, 132, 252, 0.90)",
+        shadow: "rgba(192, 132, 252, 0.25)",
+      },
+      {
+        bg: "rgba(34, 197, 94, 0.90)",
+        shadow: "rgba(34, 197, 94, 0.25)",
+      },
+      {
+        bg: "rgba(217, 119, 6, 0.90)",
+        shadow: "rgba(217, 119, 6, 0.25)",
+      },
+      {
+        bg: "rgba(148, 163, 184, 0.90)",
+        shadow: "rgba(148, 163, 184, 0.25)",
+      },
+    ];
+
+    let hash = 0;
+
+    for (let i = 0; i < tradeName.length; i++) {
+      hash = tradeName.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    const index = Math.abs(hash) % colors.length;
+
+    return colors[index];
+  }
   return (
     <motion.article
       className={sold ? "lead-card sold" : "lead-card"}
@@ -61,11 +135,17 @@ export function LeadCard({ lead }: { lead: PublicLead }) {
 
         {lead.trade && !sold && (
           <motion.span
-            className="new-badge"
+            className="trade-badge"
+            style={{
+              background: getTradeBadgeStyle(lead.trade.name).bg,
+              boxShadow: `0 8px 18px ${
+                getTradeBadgeStyle(lead.trade.name).shadow
+              }`,
+            }}
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
           >
-            {lead.trade?.name ?? "Other"}
+            {lead.trade.name}
           </motion.span>
         )}
         {/* {lead.isNew && !sold && (
