@@ -147,7 +147,7 @@ export function Footer() {
 
         <div className="canadian">
           <Image
-            src="/assets/flag-of-canada.png"
+            src="/assets/flag-of-canada.jpeg"
             alt="Canada"
             width={75}
             height={45}
