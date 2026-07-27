@@ -26,13 +26,11 @@ export default async function Opportunities() {
         </section>
       </AnimatedReveal>
 
-      <AnimatedReveal>
         <section className="section opportunities-page">
           <div className="wrap">
             <OpportunityFilter leads={leads} />
           </div>
         </section>
-      </AnimatedReveal>
     </>
   );
 }
