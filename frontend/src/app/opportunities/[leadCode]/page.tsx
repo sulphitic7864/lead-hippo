@@ -7,6 +7,7 @@ import type { PublicLead } from "@/types";
 import { PurchaseActions } from "@/components/PurchaseActions";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
 import { OpportunityGallery } from "@/components/OpportunityGallery";
+import { formatTimeline } from "@/utils/page";
 
 async function load(code: string) {
   try {
@@ -114,7 +115,7 @@ export default async function OpportunityDetail({
                 </div>
                 <div>
                   <span>Timeline</span>
-                  <strong>{lead.timeline}</strong>
+                  <strong>{formatTimeline(lead.timeline)}</strong>
                 </div>
                 <div>
                   <span>Posted</span>
