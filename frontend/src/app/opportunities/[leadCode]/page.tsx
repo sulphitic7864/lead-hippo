@@ -115,7 +115,7 @@ export default async function OpportunityDetail({
                 </div>
                 <div>
                   <span>Timeline</span>
-                  <strong>{formatTimeline(lead.timeline)}</strong>
+                  <strong>{`Contacted within ${lead.timeline} days`}</strong>
                 </div>
                 <div>
                   <span>Posted</span>
