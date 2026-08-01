@@ -388,7 +388,7 @@ select {
   display: flex;
   flex-direction: column;
   transition: 0.2s;
-  height: stretch;
+  height: 100%;
 }
 .lead-card:hover {
   transform: translateY(-4px);
