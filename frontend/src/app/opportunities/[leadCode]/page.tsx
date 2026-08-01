@@ -115,7 +115,7 @@ export default async function OpportunityDetail({
                 </div>
                 <div>
                   <span>Timeline</span>
-                  <strong>{`Contacted within ${lead.timeline} days`}</strong>
+                  <strong>{`want's to start the work within ${lead.timeline} days`}</strong>
                 </div>
                 <div>
                   <span>Posted</span>
