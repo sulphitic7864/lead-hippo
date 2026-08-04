@@ -1,25 +1,3 @@
-// import type { PublicLead } from "@/types";
-// import { LeadCard } from "./LeadCard";
-// export function LeadGrid({
-//   leads,
-//   empty = "No opportunities are currently available. Please check back soon.",
-// }: {
-//   leads: PublicLead[];
-//   empty?: string;
-// }) {
-//   return leads.length ? (
-//     <div className="lead-grid">
-//       {leads.map((l) => (
-//         <LeadCard lead={l} key={l.leadCode} />
-//       ))}
-//     </div>
-//   ) : (
-//     <div className="empty-state">
-//       <h3>Fresh opportunities are coming</h3>
-//       <p>{empty}</p>
-//     </div>
-//   );
-// }
 "use client";
 
 import type { PublicLead } from "@/types";
@@ -37,10 +15,8 @@ export function LeadGrid({
     <motion.div
       className="lead-grid"
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      animate="visible"
       variants={{
-        hidden: {},
         visible: {
           transition: {
             staggerChildren: 0.12,
@@ -73,9 +49,14 @@ export function LeadGrid({
   ) : (
     <motion.div
       className="empty-state"
-      initial={{ opacity: 0, y: 25 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      animate="visible"
+      variants={{
+        visible: {
+          transition: {
+            staggerChildren: 0.12,
+          },
+        },
+      }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <h3>Fresh opportunities are coming</h3>
