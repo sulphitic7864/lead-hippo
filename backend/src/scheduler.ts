@@ -4,9 +4,9 @@ export function startScheduler() {
   const run = async () => {
     try {
       await expirePendingCheckouts();
-      await pool.execute(
-        "UPDATE leads SET status='ARCHIVED',is_featured=0,archived_at=UTC_TIMESTAMP() WHERE status='ACTIVE' AND expires_at IS NOT NULL AND expires_at<UTC_TIMESTAMP()",
-      );
+      // await pool.execute(
+      //   "UPDATE leads SET status='ARCHIVED',is_featured=0,archived_at=UTC_TIMESTAMP() WHERE status='ACTIVE' AND expires_at IS NOT NULL AND expires_at<UTC_TIMESTAMP()",
+      // );
       await pool.execute(
         "DELETE FROM admin_sessions WHERE expires_at<UTC_TIMESTAMP()",
       );
